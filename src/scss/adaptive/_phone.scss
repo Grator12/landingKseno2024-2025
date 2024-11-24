@@ -1,0 +1,14 @@
+@use "variables";
+@use "../typography";
+
+@mixin phone() {
+  @media (width>=variables.$breakpoint-phone) {
+
+  }
+
+
+  @media (width<variables.$breakpoint-phone) {
+
+
+  }
+}

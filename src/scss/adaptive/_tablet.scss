@@ -1,0 +1,13 @@
+@use "variables";
+@use "../typography";
+
+@mixin tablet() {
+
+  @media (width>=variables.$breakpoint-tablet) {
+
+  }
+  @media (width<variables.$breakpoint-tablet) {
+
+  }
+
+}
