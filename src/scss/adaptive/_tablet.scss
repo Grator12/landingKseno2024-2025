@@ -4,10 +4,32 @@
 @mixin tablet() {
 
   @media (width>=variables.$breakpoint-tablet) {
+    .header {
+      &__nav {
+        grid-column-start: -7;
 
+        ul {
+          flex-direction: row;
+          gap: 16px;
+        }
+      }
+    }
   }
   @media (width<variables.$breakpoint-tablet) {
+    .header {
+      &__nav {
+        height: 100%;
+        grid-column-start: -3;
 
+        ul {
+          height: 100%;
+          margin: 0;
+          text-align: end;
+          flex-direction: column;
+
+        }
+      }
+    }
   }
 
 }
