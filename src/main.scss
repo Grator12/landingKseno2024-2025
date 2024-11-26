@@ -9,7 +9,7 @@
 
 $breakpoint-tablet: variables.$breakpoint-tablet;
 $breakpoint-phone: variables.$breakpoint-phone;
-$breakpoint-content: 1133px; // 1440 - 156 * 2;
+$breakpoint-content: 1128px; // 1440 - 156 * 2;
 
 $spacing-min: 16px;
 $spacing-max: 32px;
@@ -20,16 +20,24 @@ $content-column-size: math.div($breakpoint-content - 11 * $spacing-max, 12);
 $breakpoint-content-min: $breakpoint-content + $spacing-max * 2;
 $breakpoint-content-max: $breakpoint-content-min + $offset-max * 2;
 
-@mixin beforeForHover() {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: var(--_state-layer-opacity, 0);
-  background-color: currentColor;
-  z-index: -1;
-  transition: 0.3s opacity;
-  border-radius: inherit;
+$half-columns: calc(var(--columns) / 2);
+
+@mixin sub-grid($grid-column) {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: $grid-column;
 }
+
+//@mixin beforeForHover() {
+//  content: '';
+//  position: absolute;
+//  inset: 0;
+//  opacity: var(--_state-layer-opacity, 0);
+//  background-color: currentColor;
+//  z-index: -1;
+//  transition: 0.3s opacity;
+//  border-radius: inherit;
+//}
 
 html, body {
   margin: 0;
@@ -57,8 +65,8 @@ body {
   grid-template-columns: [container-start] var(--offset) [content-start] repeat(var(--columns), var(--column-size)) [content-end] var(--offset) [container-end];
   min-width: 340px;
   column-gap: var(--spacing);
-  /* 14px → 22px */
-  //font-size: clamp(0.875rem, 0.6799rem + 0.9756vw, 1.375rem);
+  /* 16px → 20px */
+  //font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
   @media(min-width: $breakpoint-phone) {
     --columns: 8;
     --spacing: #{$spacing-max};
@@ -88,24 +96,28 @@ body {
 
 @layer main {
   .main-container {
-    grid-column: content;
-    display: grid;
+    @include sub-grid(container);
     grid-auto-rows: min-content;
     grid-auto-flow: row;
-
-    grid-template-columns: subgrid;
     max-width: 1440px;
+
+    background-color: var(--md-sys-color-background);
   }
 
   .hero-section {
     height: 100dvh;
     display: grid;
     grid-template-columns: subgrid;
-    grid-column: 1 / -1;
+    grid-column: 1/-1;
     color: var(--md-sys-color-on-primary);
+    background-color: darkslateblue;
+
+    &__wrapper {
+      @include sub-grid(content);
+    }
 
     &__info {
-      grid-column: span calc(var(--columns) / 2);
+      grid-column: span $half-columns;
 
       &__button {
         margin-top: 112px;
@@ -127,8 +139,6 @@ body {
 
   .header {
     display: grid;
-    //flex-direction: row;
-    //justify-content: space-between;
     align-items: center;
     height: 100px;
     grid-column: 1 / -1;
@@ -164,6 +174,141 @@ body {
     }
   }
 
+  .text-section {
+    @extend .section;
+
+    &__item-picture {
+      grid-column: span 5;
+    }
+
+    &__item-text {
+      grid-column-start: calc($half-columns + 1);
+      grid-column-end: -1;
+
+      &--inline {
+        grid-column: span 6;
+      }
+
+      h3 {
+        color: var(--md-sys-color-primary);
+        @include typography.headline-medium;
+        margin-top: 0;
+      }
+
+      p {
+        color: var(--md-sys-color-on-surface);
+        margin-bottom: 0;
+      }
+    }
+
+    &.reverse {
+      .text-section__item-picture {
+        grid-column-start: calc($half-columns + 1);
+        grid-column-end: -1;
+      }
+
+      .text-section__item-text {
+        grid-column: span 5;
+        border-radius: 16px;
+      }
+    }
+  }
+
+  .divider-section {
+    @extend .section;
+    place-items: center;
+    background-color: var(--md-sys-color-inverse-surface);
+    height: 200px;
+
+
+    &__text {
+      @include typography.display-medium;
+      color: var(--md-sys-color-inverse-on-surface);
+      grid-column: 1/-1;
+      margin: 0;
+    }
+
+    &--between-sections {
+      background-color: var(--md-sys-color-surface-variant);
+
+      p {
+        grid-column-start: $half-columns;
+        @include typography.body-large;
+        color: var(--md-sys-color-on-surface-variant);
+      }
+    }
+
+    &__button {
+      grid-column-start: 3;
+      grid-column-end: -3;
+    }
+  }
+
+  .end-section {
+    @extend .section;
+    background-color: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+    text-align: center;
+
+    &__text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      grid-column: 1/-1;
+
+      h4, h3, h2 {
+        margin: 0;
+      }
+
+      h4 {
+        @include typography.display-small;
+      }
+
+      h3 {
+        @include typography.display-medium;
+      }
+
+      h2 {
+        @include typography.display-large;
+      }
+    }
+  }
+
+  .section {
+
+    padding-block: 100px;
+    @include sub-grid(content);
+
+    &.divider-section {
+      padding: 0;
+    }
+
+    &--wide {
+      @include sub-grid(container);
+    }
+
+    &--composed {
+      background-color: var(--md-sys-color-secondary-container);
+      @include sub-grid(container);
+      grid-auto-flow: row;
+      grid-auto-rows: 1fr;
+      row-gap: 50px;
+
+      & .text-section {
+        padding: 0;
+      }
+
+    }
+  }
+
+  .picture {
+    background-color: aquamarine;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 16px;
+  }
+
   .material-symbols-outlined {
     font-variation-settings: 'FILL' var(--icon-fill, 0),
     'wght' 400,
@@ -184,9 +329,38 @@ body {
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   display: grid;
   place-items: center;
+  text-align: center;
   height: 100px;
   cursor: pointer;
   border: none;
   padding: 0;
   @include typography.display-medium;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  --_state-layer-opacity: 0;
+
+  &:hover {
+    --_state-layer-opacity: .08;
+  }
+
+  &::before {
+    content: '';
+    background-color: var(--md-sys-color-on-primary);; //currentColor;
+    border-radius: inherit;
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    transition: opacity 0.3s;
+    opacity: var(--_state-layer-opacity);
+  }
+}
+
+
+figure {
+  margin: 0;
+}
+
+p {
+  text-wrap: pretty;
 }

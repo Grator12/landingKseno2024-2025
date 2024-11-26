@@ -31,6 +31,12 @@ $typography-map: (
   //        "letter-spacing": 0.1px,
   //        "weight": 500
   //),
+        "body-large": (
+                "line-height": 24px,
+                "size": 1em,
+                "letter-spacing": 0.5px,
+                "weight": 400
+        ),
         "display-large": (
                 "line-height": 64px,
                 "size": 3.5625em,
@@ -43,6 +49,12 @@ $typography-map: (
                 "letter-spacing": 0px,
                 "weight": 400
         ),
+        "display-small": (
+                "line-height": 44px,
+                "size": 2.25em,
+                "letter-spacing": 0px,
+                "weight": 400
+        ),
         "title-large": (
                 "line-height": 28px,
                 "size": 1.375em,
@@ -52,6 +64,12 @@ $typography-map: (
         "headline-large": (
                 "line-height": 40px,
                 "size": 2em,
+                "letter-spacing": 0px,
+                "weight": 400
+        ),
+        "headline-medium": (
+                "line-height": 36px,
+                "size": 1.75em,
                 "letter-spacing": 0px,
                 "weight": 400
         ),
@@ -86,9 +104,15 @@ $typography-map: (
 //@mixin title-small {
 //  @include _apply-font("title-small");
 //}
+@mixin body-large {
+  @include _apply-font("body-large");
+}
+
+
 @mixin title-large {
   @include _apply-font("title-large");
 }
+
 
 @mixin display-large {
   @include _apply-font("display-large");
@@ -98,6 +122,14 @@ $typography-map: (
   @include _apply-font("display-medium");
 }
 
+@mixin display-small {
+  @include _apply-font("display-small");
+}
+
 @mixin headline-large {
   @include _apply-font("headline-large");
+}
+
+@mixin headline-medium {
+  @include _apply-font("headline-medium");
 }
