@@ -37,6 +37,12 @@ $typography-map: (
                 "letter-spacing": 0.5px,
                 "weight": 400
         ),
+        "body-medium": (
+                "line-height": 20px,
+                "size": 0.875em,
+                "letter-spacing": 0.25x,
+                "weight": 400
+        ),
         "display-large": (
                 "line-height": 64px,
                 "size": 3.5625em,
@@ -106,6 +112,10 @@ $typography-map: (
 //}
 @mixin body-large {
   @include _apply-font("body-large");
+}
+
+@mixin body-medium {
+  @include _apply-font("body-medium");
 }
 
 

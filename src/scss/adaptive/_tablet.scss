@@ -30,6 +30,38 @@
         }
       }
     }
+
+    .text-section {
+      &__item-picture {
+        grid-column: span 3;
+      }
+
+      &.reverse {
+        .text-section__item-picture {
+          // grid-column-start: calc($half-columns + 2);
+          grid-column-end: -1;
+        }
+
+        .text-section__item-text {
+          grid-column: span 4;
+        }
+      }
+    }
+
+    .divider-section {
+      &__button {
+        //grid-column: 3 / -3;
+      }
+    }
+
+    .centralised-section {
+      &__item {
+
+        &--column {
+          //grid-column: 3 / -3;
+        }
+      }
+    }
   }
 
 }
