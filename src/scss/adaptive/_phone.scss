@@ -8,7 +8,66 @@
 
 
   @media (width<variables.$breakpoint-phone) {
+    .hero-section {
+      &__info {
+        grid-column: span 3;
+      }
+    }
+    .header {
+      &__nav {
+        grid-column: span 2;
+      }
+    }
+    .text-section {
+      grid-template-rows: 1fr 1fr;
+      row-gap: 1rem;
 
+      &__item-picture {
+        grid-row: 1;
+        grid-column: 1/-1;
+      }
 
+      &__item-text {
+        //grid-row: 2;
+        grid-column: 1/-1;
+      }
+    }
+
+    .divider-section {
+      &__button {
+        grid-column: content;
+      }
+
+      &--between-sections {
+        p {
+          grid-column: content;
+        }
+      }
+
+      &--footer {
+        
+        p {
+          text-align: center;
+          grid-column: 1/-1;
+        }
+      }
+    }
+    .centralised-section {
+      &__item {
+        &--column {
+
+          grid-column: content;
+
+        }
+      }
+    }
+
+    .section {
+      padding-block: 16px;
+
+      &--composed {
+        row-gap: 1rem;
+      }
+    }
   }
 }

@@ -19,7 +19,7 @@
     .header {
       &__nav {
         height: 100%;
-        grid-column-start: -3;
+        grid-column-start: -4;
 
         ul {
           height: 100%;
@@ -33,7 +33,7 @@
 
     .text-section {
       &__item-picture {
-        grid-column: span 3;
+        grid-column: span 4;
       }
 
       &.reverse {
@@ -52,6 +52,13 @@
       &__button {
         //grid-column: 3 / -3;
       }
+
+      &--footer {
+        p {
+          
+        }
+      }
+
     }
 
     .centralised-section {
