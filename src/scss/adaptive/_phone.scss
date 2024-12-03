@@ -45,7 +45,7 @@
       }
 
       &--footer {
-        
+
         p {
           text-align: center;
           grid-column: 1/-1;
@@ -63,10 +63,19 @@
     }
 
     .section {
-      padding-block: 16px;
+      padding-block: 1rem;
 
       &--composed {
-        row-gap: 1rem;
+        row-gap: 0;
+
+        & .text-section {
+          row-gap: 2rem;
+          grid-template-rows: min-content min-content;
+
+          &__item-picture {
+            height: 240px;
+          }
+        }
       }
     }
   }

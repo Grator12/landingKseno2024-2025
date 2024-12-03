@@ -1,0 +1,19 @@
+@mixin init() {
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0;
+  }
+  body {
+    min-height: 100dvh;
+    min-width: 340px;
+    font-family: "Roboto", sans-serif;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  p, li {
+    text-wrap: pretty;
+  }
+}

@@ -17,6 +17,8 @@
   }
   @media (width<variables.$breakpoint-tablet) {
     .header {
+      margin-top: 0.5rem;
+
       &__nav {
         height: 100%;
         grid-column-start: -4;
@@ -55,7 +57,7 @@
 
       &--footer {
         p {
-          
+
         }
       }
 

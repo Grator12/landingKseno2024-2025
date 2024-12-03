@@ -1,2 +1,6 @@
 $breakpoint-tablet: 840px;
 $breakpoint-phone: 600px;
+
+$breakpoint-content: 1128px; // 1440 - 156 * 2;
+
+$half-columns: calc(var(--columns) / 2);

@@ -1,0 +1,35 @@
+@use "../mixins";
+
+@mixin sub-grid($grid-column) {
+  @include mixins.sub-grid($grid-column);
+}
+
+@mixin section() {
+
+  padding-block: 100px;
+  @include sub-grid(content);
+
+  &.divider-section {
+    padding: 0;
+  }
+
+
+  &--wide {
+    @include sub-grid(container);
+  }
+
+  &--composed {
+    background-color: var(--md-sys-color-secondary-container);
+    @include sub-grid(container);
+    grid-auto-flow: row;
+    grid-auto-rows: min-content;
+    row-gap: 50px;
+
+    & .text-section {
+      padding: 0;
+
+
+    }
+
+  }
+}

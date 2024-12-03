@@ -1,0 +1,58 @@
+@use "../typography";
+@use "../adaptive/variables";
+
+@mixin centralised-section() {
+  $half-columns: variables.$half-columns;
+
+  @extend .section--wide;
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  text-align: center;
+  place-items: center;
+  padding-block: 100px;
+
+  &__content {
+    @extend .content;
+  }
+
+  &__item {
+    grid-column: 1/-1;
+    width: 100%;
+
+    &--text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      h4, h3, h2 {
+        margin: 0;
+      }
+
+      h4 {
+        @include typography.display-small;
+      }
+
+      h3 {
+        @include typography.display-medium;
+      }
+
+      h2 {
+        @include typography.display-large;
+      }
+    }
+
+    &--column {
+      grid-column: calc($half-columns - 2) / calc(-1 * ($half-columns - 2));
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &--big {
+    padding: 0;
+    height: 455px;
+  }
+}

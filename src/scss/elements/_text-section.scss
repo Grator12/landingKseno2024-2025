@@ -1,0 +1,42 @@
+@use "../typography";
+@use "../adaptive/variables";
+
+@mixin text-section() {
+  $half-columns: variables.$half-columns;
+
+  @extend .section;
+  &__item-picture {
+    grid-column: span 5;
+  }
+
+  &__item-text {
+    grid-column-start: calc($half-columns + 1);
+    grid-column-end: -1;
+
+    &--inline {
+      grid-column: span $half-columns;
+    }
+
+    h3 {
+      color: var(--md-sys-color-primary);
+      @include typography.headline-medium;
+      margin-top: 0;
+    }
+
+    p {
+      color: var(--md-sys-color-on-surface);
+      margin-bottom: 0;
+    }
+  }
+
+  &.reverse {
+    .text-section__item-picture {
+      grid-column-start: calc($half-columns + 2);
+      grid-column-end: -1;
+    }
+
+    .text-section__item-text {
+      grid-column: span 6;
+    }
+  }
+}

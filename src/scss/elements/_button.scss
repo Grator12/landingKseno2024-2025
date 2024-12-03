@@ -1,0 +1,35 @@
+@use "../typography";
+
+@mixin button() {
+  border-radius: 16px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  padding-inline: 8px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  height: 100px;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  @include typography.display-medium;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-width: 300px;
+  --_state-layer-opacity: 0;
+
+  &:hover {
+    --_state-layer-opacity: .08;
+  }
+
+  &::before {
+    content: '';
+    background-color: var(--md-sys-color-on-primary);; //currentColor;
+    border-radius: inherit;
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    transition: opacity 0.3s;
+    opacity: var(--_state-layer-opacity);
+  }
+}

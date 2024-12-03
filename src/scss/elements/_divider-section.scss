@@ -1,0 +1,57 @@
+@use "../typography";
+@use "../adaptive/variables";
+
+@mixin divider-section() {
+  $half-columns: variables.$half-columns;
+
+  @extend .section--wide;
+  place-items: center;
+  background-color: var(--md-sys-color-inverse-surface);
+  height: 200px;
+  text-align: center;
+
+  &__content {
+    @extend .content;
+  }
+
+  &__text {
+    @include typography.display-medium;
+    color: var(--md-sys-color-inverse-on-surface);
+    grid-column: 1/-1;
+    margin: 0;
+
+
+  }
+
+  &__button {
+    grid-column: calc($half-columns - 2) / calc(-1 * ($half-columns - 2));
+    color: var(--md-sys-color-on-primary-fixed);
+    background-color: var(--md-sys-color-inverse-primary);
+  }
+
+  &--between-sections {
+    background-color: var(--md-sys-color-surface-variant);
+    text-align: start;
+
+    p {
+      grid-column: $half-columns/-1;
+      @include typography.body-large;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+  }
+
+  &--footer {
+    grid-auto-rows: min-content;
+    height: 155px;
+    place-content: center;
+
+    p {
+      width: 100%;
+      text-align: start;
+      grid-column: -5/-1;
+      color: var(--md-sys-color-inverse-on-surface);
+      @include typography.body-medium;
+      margin: 0;
+    }
+  }
+}
