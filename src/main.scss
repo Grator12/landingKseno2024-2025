@@ -115,18 +115,7 @@ body {
     @include elements.picture;
   }
 
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' var(--icon-fill, 0),
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24;
 
-    .navigation-list__button.active & {
-      --icon-fill: 1;
-    }
-
-    transition: font-variation-settings 0.3s;
-  }
 }
 
 .button {
