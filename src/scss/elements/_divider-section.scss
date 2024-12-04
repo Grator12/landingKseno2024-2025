@@ -26,7 +26,7 @@
   &__button {
     grid-column: calc($half-columns - 2) / calc(-1 * ($half-columns - 2));
     color: var(--md-sys-color-on-primary-fixed);
-    background-color: var(--md-sys-color-inverse-primary);
+    background-color: var(--md-sys-color-primary);
   }
 
   &--between-sections {
